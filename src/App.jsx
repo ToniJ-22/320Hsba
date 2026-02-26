@@ -1,7 +1,7 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Home from './pages/Home';
-import Favorites from './pages/Favorites';
-import Navbar from './components/Navbar';
+import { BrowserRouter, Routes, Route } from 'react';
+import Home from '../pages/home';
+import Favorites from '../pages/favorites';
+import Navbar from '../components/navbar';
 
 export default function App() {
   return (
