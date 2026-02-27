@@ -1,16 +1,17 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
+
 export const fetchGames = createAsyncThunk(
   'games/fetchGames',
-  async (query) => {
-    const API_KEY = import.meta.env.VITE_BGA_API_KEY;
-
-    const res = await fetch(
-      `https://api.boardgameatlas.com/api/search?name=${query}&categories=Kqxz9QYimK&min_players=4&max_playtime=30&client_id=${API_KEY}`
-    );
-
-    const data = await res.json();
-    return data.games;
+  async () => {
+    try {
+      const res = await fetch('https://deckofcardsapi.com/api/deck/new/draw/?count=10');
+      const data = await res.json();
+      return data.cards;
+    } catch (error) {
+      console.error('Fetch error:', error);
+      return [];
+    }
   }
 );
 
@@ -27,10 +28,16 @@ const gamesSlice = createSlice({
         state.status = 'loading';
       })
       .addCase(fetchGames.fulfilled, (state, action) => {
-        state.status = 'succeeded';
         state.list = action.payload;
+        state.status = 'succeeded';
+      })
+      .addCase(fetchGames.rejected, (state) => {
+        state.status = 'failed';
+        state.list = [];
       });
   },
 });
 
 export default gamesSlice.reducer;
+
+

@@ -1,19 +1,23 @@
+import React from 'react';
 import { useSelector } from 'react-redux';
-import GameCard from '../components/Gamecard';
+import Gamecard from '../components/Gamecard';
 
 export default function Favorites() {
   const favorites = useSelector((state) => state.favorites.items);
 
-  if (!favorites.length) return <p>No favorite games yet.</p>;
+  if (!favorites.length)
+    return <p style={{ textAlign: 'center', marginTop: '20px' }}>No favorite cards yet.</p>;
 
   return (
-    <div>
-      <h2>Your Favorite Games</h2>
-      <div className="grid">
+    <div style={containerStyle}>
+      <h2>Your Favorite Cards</h2>
+      <div style={gridStyle}>
         {favorites.map((game) => (
-          <GameCard key={game.id} game={game} />
+          <Gamecard key={game.code} game={game} />
         ))}
       </div>
     </div>
   );
 }
+
+

@@ -1,20 +1,31 @@
+
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchGames } from '../redux/games';
-import SearchBar from '../components/searchBar';
-import GameCard from '../components/Gamecard';
+import Gamecard from '../components/Gamecard';
 
 export default function Home() {
   const dispatch = useDispatch();
   const games = useSelector((state) => state.games.list);
   const status = useSelector((state) => state.games.status);
 
+  useEffect(() => {
+    dispatch(fetchGames());
+  }, [dispatch]);
+
   return (
-    <div>
-      <SearchBar onSearch={(query) => dispatch(fetchGames(query))} />
-      {status === 'loading' && <p>Loading games...</p>}
-      <div className="grid">
+    <div style={containerStyle}>
+      <h1>Game Night Planner</h1>
+
+      {status === 'loading' && <p>Loading cards...</p>}
+
+      {status === 'succeeded' && games.length === 0 && (
+        <p>No cards found. Try refreshing!</p>
+      )}
+
+      <div style={gridStyle}>
         {games.map((game) => (
-          <GameCard key={game.id} game={game} />
+          <Gamecard key={game.code} game={game} />
         ))}
       </div>
     </div>

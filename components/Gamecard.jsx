@@ -1,27 +1,32 @@
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addFavorite, removeFavorite } from '../redux/favorites';
 
-export default function GameCard({ game }) {
+export default function Gamecard({ game }) {
   const dispatch = useDispatch();
   const favorites = useSelector((state) => state.favorites.items);
 
-  const isFavorite = favorites.some((g) => g.id === game.id);
+  const isFavorite = favorites.some((fav) => fav.code === game.code);
+
+  const handleFavorite = () => {
+    if (isFavorite) {
+      dispatch(removeFavorite(game.code));
+    } else {
+      dispatch(addFavorite(game));
+    }
+  };
 
   return (
-    <div className="card">
-      <img src={game.image_url} alt={game.name} />
-      <h3>{game.name}</h3>
-      <p>{game.min_players} - {game.max_players} players</p>
-      <p>{game.playing_time} min</p>
-      {isFavorite ? (
-        <button onClick={() => dispatch(removeFavorite(game.id))}>
-          Remove from Favorites
-        </button>
-      ) : (
-        <button onClick={() => dispatch(addFavorite(game))}>
-          Add to Favorites
-        </button>
-      )}
+    <div className="game-card" style={cardStyle}>
+      <img
+        src={game.image}
+        alt={`${game.value} of ${game.suit}`}
+        style={imageStyle}
+      />
+      <h3>{game.value} of {game.suit}</h3>
+      <button onClick={handleFavorite} style={buttonStyle}>
+        {isFavorite ? 'Remove from Favorites' : 'Add to Favorites'}
+      </button>
     </div>
   );
 }
