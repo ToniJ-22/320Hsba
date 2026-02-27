@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react';
 import Home from '../pages/home';
 import Favorites from '../pages/favorites';
 import Navbar from '../components/navbar';
+import "../src/styles.css"
 
 export default function App() {
   return (

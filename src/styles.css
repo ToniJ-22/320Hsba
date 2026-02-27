@@ -1,0 +1,94 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Arial', sans-serif;
+  background-color: #f2f2f2;
+  color: #333;
+}
+
+
+nav {
+  background-color: #4CAF50;
+  color: white;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav h1 {
+  margin: 0;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  margin-left: 15px;
+  font-weight: bold;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+
+.container {
+  padding: 20px;
+  text-align: center;
+}
+
+
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.game-card {
+  background-color: white;
+  border-radius: 8px;
+  padding: 10px;
+  width: 150px;
+  box-shadow: 0px 2px 5px rgba(0,0,0,0.2);
+  transition: transform 0.2s;
+}
+
+.game-card:hover {
+  transform: translateY(-5px);
+}
+
+.game-card img {
+  width: 100px;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+
+button {
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #4CAF50;
+  color: white;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+
+form {
+  margin-top: 20px;
+}
+
+input[type="text"] {
+  padding: 8px;
+  width: 250px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  margin-right: 1
+}
