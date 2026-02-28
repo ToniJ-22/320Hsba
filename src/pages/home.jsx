@@ -1,4 +1,3 @@
-
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchGames } from '../redux/games';
@@ -14,7 +13,7 @@ export default function Home() {
   }, [dispatch]);
 
   return (
-    <div style={containerStyle}>
+    <div>
       <h1>Game Night Planner</h1>
 
       {status === 'loading' && <p>Loading cards...</p>}
@@ -23,7 +22,7 @@ export default function Home() {
         <p>No cards found. Try refreshing!</p>
       )}
 
-      <div style={gridStyle}>
+      <div>
         {games.map((game) => (
           <Gamecard key={game.code} game={game} />
         ))}

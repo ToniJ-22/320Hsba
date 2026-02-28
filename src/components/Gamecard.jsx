@@ -17,14 +17,17 @@ export default function Gamecard({ game }) {
   };
 
   return (
-    <div className="game-card" style={cardStyle}>
+    <div className="game-card">
       <img
         src={game.image}
         alt={`${game.value} of ${game.suit}`}
-        style={imageStyle}
+        className="game-card__image"
       />
       <h3>{game.value} of {game.suit}</h3>
-      <button onClick={handleFavorite} style={buttonStyle}>
+      <button
+        onClick={handleFavorite}
+        className="game-card__button"
+      >
         {isFavorite ? 'Remove from Favorites' : 'Add to Favorites'}
       </button>
     </div>
