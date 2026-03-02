@@ -1,19 +1,20 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
-
 export const fetchGames = createAsyncThunk(
   'games/fetchGames',
   async () => {
-    try {
-      const res = await fetch('https://deckofcardsapi.com/api/deck/new/draw/?count=10');
-      const data = await res.json();
-      return data.cards;
-    } catch (error) {
-      console.error('Fetch error:', error);
-      return [];
-    }
+    const res = await fetch('https://www.cheapshark.com/api/1.0/deals');
+    const data = await res.json();
+
+    return data.slice(0, 12).map((game) => ({
+      code: game.dealID,
+      value: game.title,
+      suit: game.storeID,
+      image: game.thumb,
+    }));
   }
 );
+
 
 const gamesSlice = createSlice({
   name: 'games',
